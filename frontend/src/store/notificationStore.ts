@@ -1,0 +1,21 @@
+"use client";
+
+import { create } from "zustand";
+
+export interface Toast {
+  id: string;
+  type: "success" | "error" | "info" | "warning";
+  message: string;
+}
+
+interface NotificationState {
+  unreadCount: number;
+  setUnreadCount: (count: number) => void;
+  decrementUnread: () => void;
+}
+
+export const useNotificationStore = create<NotificationState>()((set) => ({
+  unreadCount: 0,
+  setUnreadCount: (count) => set({ unreadCount: count }),
+  decrementUnread: () => set((s) => ({ unreadCount: Math.max(0, s.unreadCount - 1) })),
+}));
