@@ -16,6 +16,7 @@ class PushSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PushSubscription
         fields = ("endpoint", "p256dh_key", "auth_key", "user_agent")
+        extra_kwargs = {"endpoint": {"validators": []}}
 
     def create(self, validated_data):
         user = self.context["request"].user
