@@ -38,7 +38,7 @@ cd backend
 uv sync
 
 # Create database
-createdb sport_games_organiser
+createdb just_one_more
 
 # Copy and fill in env
 cp .env.example .env
@@ -79,7 +79,7 @@ The app runs at `http://localhost:3000`, API at `http://localhost:8000`.
 DJANGO_SETTINGS_MODULE=config.settings.development
 SECRET_KEY=<50-char random string>
 DEBUG=True
-DATABASE_URL=postgresql://localhost/sport_games_organiser
+DATABASE_URL=postgresql://localhost/just_one_more
 ALLOWED_HOSTS=localhost,127.0.0.1
 CORS_ALLOWED_ORIGINS=http://localhost:3000
 REDIS_URL=redis://localhost:6379/0
