@@ -142,6 +142,37 @@ Open the ngrok HTTPS URL on your phone, install the PWA via browser menu, then e
 
 ## Production
 
+### Redis
+
+Redis is required in production as the Celery message broker.
+
+**macOS (Homebrew)**
+```bash
+brew install redis
+brew services start redis
+```
+
+**Ubuntu / Debian**
+```bash
+sudo apt update && sudo apt install -y redis-server
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+**Verify it's running**
+```bash
+redis-cli ping   # should return PONG
+```
+
+Set the URL in `backend/.env`:
+```env
+REDIS_URL=redis://localhost:6379/0
+```
+
+> In development, Redis is not needed — `CELERY_TASK_ALWAYS_EAGER = True` runs tasks synchronously in-process.
+
+### App processes
+
 Uses `gunicorn` for Django and `pm2` for Next.js + Celery workers.
 
 ```bash
